@@ -1,0 +1,251 @@
+/* Base Styles */
+
+:root {
+    font-size: 10px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Open Sans", Arial, sans-serif;     
+    overflow:hidden;  /*Ensures overflow is clipped and the rest of the content is invisible*/
+    height: 100vh;     /*100% of the viewport height*/    
+}
+
+main {    
+    overflow-y: auto;  /*If overflow is clipped, a scroll bar should be added to see the rest of the content*/
+    width:83vw;
+}
+
+img {
+    display: block;    
+}
+
+/* Profile Styles */
+
+.profile {
+    display:grid;
+    grid-template-areas:
+        "p p p p p . . . . . . ."
+        "p p p p p t t t t t t t"
+        "p p p p p t t t t t t t"
+        "p p p p p . . . . . . .";         
+
+    margin-top:2em;
+    margin-bottom:8em;   
+}
+
+.profile-image {
+    grid-area: p;    
+}
+
+.codespace-cat {
+    max-width:100%;     /*Ensures image never exceeds dimensions of container*/
+    max-height:100%;     /*Ensures image never exceeds dimensions of container*/
+}
+
+.profile-text {
+   grid-area: t;   
+}
+
+.profile-edit-btn, .profile-archive-btn {
+    background: lightgray;    
+    border:none;
+    font-weight: 600;
+    font-size: 1.4em;
+    border-radius: 5px;
+    margin-right:20px;
+    padding: 0px 17px 0px 17px;  /*Only left and right padding applied*/    
+}
+
+.profile-settings-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.profile-edit-btn:hover, .profile-archive-btn:hover {  /*CSS properties applied when you hover over the buttons*/
+    background: gray;  
+    cursor: pointer;
+}
+
+.profile-user-settings {
+    display: flex;    
+    justify-content: flex-start;   /*Content starts at the beginning of the flexbox*/
+    margin:0;
+    padding:0;
+}
+
+.profile-stats ul {
+    list-style: none;    
+    display: flex;
+    justify-content: flex-start; /*Content starts at the beginning of the flexbox*/
+    font-size:1.5em;
+    margin:0;
+    padding:0;    
+}
+
+.profile-stats-list > li {   
+    margin-right: 2em;
+}
+
+.profile-bio {
+    font-size: 1.5em;    
+}
+
+@media screen and (max-width: 600px) {  /*media query to apply stipulated css properties screen sizes up until 600px*/
+    
+    .profile-bio {
+        white-space: wrap; 
+    }
+
+    .profile-user-settings {
+        flex-wrap: wrap;
+    }
+
+    .profile-stats {
+        display: none;
+    }      
+}
+
+/* Sidebar Styles */
+
+.logo {
+    width: 43%;
+    height:auto;    /*Ensures aspect ratio is maintained*/
+    margin-left:1.2rem;
+    margin-top: 2rem;
+}
+
+.icons {
+    width:18%;
+    height:auto;  /*Ensures aspect ratio is maintained*/
+    margin-right:2em;
+}
+
+ul {
+    list-style: none;
+    margin-right:1rem;
+    padding:0;
+}
+
+li {
+    color: black;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin:2.5rem;
+}
+
+li a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.5rem;   
+}
+
+li:hover {
+    cursor: pointer;
+    transform: scale(1.1);    /*When you hover over the element, it grows in size*/
+}
+
+aside {
+    border-right:  1px solid #ededed;   
+    flex: 1 1 0%;   /*flex-grow and flex-shrink set to 1 while flex-basis is set to 0% */
+    margin:0;
+    width:25%;
+    padding:0;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+
+@media (max-width: 600px) {    /*Media query to apply stipulated css properties screen sizes up until 600px*/
+    .wrapper {
+      flex-direction: column-reverse;  /*Ensures that the sidebar goes to the bottom of the screen*/
+    }
+    ul {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    li {
+        margin:1rem;
+    }
+    .logo {
+        display: none;  /*Logo disappears in small screens*/
+    }
+    ul a {
+        display: none;    /*Navigation links text disappears in small screens*/
+    }
+
+    .icons {
+        width:75%;
+        height:auto;
+        margin:2rem;
+    }    
+}
+
+.wrapper_inner {
+    width: 90%;
+    margin: 0px auto;
+}
+
+/* Gallery Styles */
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));  /*automatically fills in columns as screen size changes*/
+    grid-auto-rows: 300px;   /*automatically creates rows that are 300px high */
+    grid-row-gap: 70px;  
+    grid-column-gap: 3px;      
+}
+
+.portfolio-item {
+    width: 100%;
+    height:100%;
+    object-fit: cover;  /*ensures the picture or image covers the entire area of its container*/    
+}
+
+.gallery-item {
+    border:none;
+}
+
+.gallery-item:hover {
+    opacity: 90%;
+    cursor: pointer;    
+}
+
+.gallery ul {
+    list-style: none;
+    display: flex;    
+    font-size:1.5em;    
+}
+.gallery li {    
+    margin-right: 2em;    
+    margin-top:0;
+}
+
+@media (max-width: 600px) { 
+    .gallery {
+        grid-auto-rows: 150px;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+}
+
+/* - For this project, I initially had trouble with responsive design until I looked at media queries and they made my life simpler.
+
+- I also had trouble working with images and making them responsive to different screen sizes.
+
+- I chose a black and white theme to try and recreate the Instagram design. I also tried to recreate their layout and how it behaves in
+real life such as the sidebar that moves to the bottom in smaller screens.
+
+- I have realised and learnt that flex-box and grid systems are a powerful tool that you can use to create complex layouts with CSS.
+
+- I have also learnt that its important to consider the mobile first approach in web layout design and that media queries are a powerful
+tool that you can use to make responsive designs.
+*/
